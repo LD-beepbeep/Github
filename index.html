@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub</title>
+    <title>GitHub App Installer</title>
     
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#0d1117">
@@ -23,16 +23,23 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
         }
         .container { text-align: center; }
-        .spinner {
-            border: 3px solid rgba(255,255,255,0.1);
-            border-top: 3px solid #58a6ff;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            animation: spin 1s linear infinite;
-            margin: 10px auto;
+        .timer-text {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            color: #8b949e;
         }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        #countdown {
+            font-weight: bold;
+            color: #58a6ff;
+        }
+        .install-hint {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            background: #161b22;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #30363d;
+        }
     </style>
 
     <script>
@@ -40,16 +47,28 @@
             navigator.serviceWorker.register('sw.js');
         }
 
-        // Wait 2000 milliseconds (2 seconds) before redirecting
-        setTimeout(() => {
-            window.location.replace("https://github.com");
-        }, 10000);
+        let secondsLeft = 20;
+
+        const countdownInterval = setInterval(() => {
+            secondsLeft--;
+            document.getElementById('countdown').textContent = secondsLeft;
+            
+            if (secondsLeft <= 0) {
+                clearInterval(countdownInterval);
+                window.location.replace("https://github.com");
+            }
+        }, 1000);
     </script>
 </head>
 <body>
     <div class="container">
-        <div class="spinner"></div>
-        <p>Launching GitHub...</p>
+        <h1>GitHub PWA</h1>
+        <p class="timer-text">Redirecting in <span id="countdown">20</span> seconds...</p>
+        
+        <div class="install-hint">
+            <strong>Tip:</strong> Click the 🖥️+ (Install) icon in your <br> 
+            browser address bar now to save this as an app!
+        </div>
     </div>
 </body>
 </html>
