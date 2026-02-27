@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GitHub</title>
-
-    <meta http-equiv="refresh" content="0;url=https://github.com">
-
+    
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#24292e">
+    
     <link rel="icon" type="image/svg+xml" href="https://github.githubassets.com/favicons/favicon.svg">
     <link rel="apple-touch-icon" href="https://github.com/fluidicon.png">
-    
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="GitHub">
 
     <script>
+        // Register the service worker (required for Chrome to treat it as a PWA)
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+        // Redirect immediately
         window.location.replace("https://github.com");
     </script>
 </head>
