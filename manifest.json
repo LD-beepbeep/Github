@@ -1,0 +1,16 @@
+{
+  "name": "GitHub",
+  "short_name": "GitHub",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#24292e",
+  "icons": [
+    {
+      "src": "https://github.com/fluidicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
